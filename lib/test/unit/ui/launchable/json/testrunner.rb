@@ -31,7 +31,7 @@ module Test
                 @json_stream_writer.write_test_case do |writer|
                   # The test path is a URL-encoded representation.
                   # https://github.com/launchableinc/cli/blob/v1.81.0/launchable/testpath.py#L18
-                  writer.write_test_path_components("testPath", @curt_test_case.test_path)
+                  writer.write_test_path_components(@curt_test_case.test_path)
                   writer.write_duration(@curt_test_case.elapsed_time)
                   writer.write_status(@curt_test_case.status)
                   writer.write_stdout(nil)
