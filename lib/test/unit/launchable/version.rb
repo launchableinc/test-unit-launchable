@@ -3,7 +3,7 @@
 module Test
   module Unit
     module Launchable
-      VERSION = "0.1.2"
+      VERSION = "0.1.3"
     end
   end
 end
