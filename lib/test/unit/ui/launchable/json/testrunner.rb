@@ -291,16 +291,8 @@ module Test
               else
                 write_comma
               end
-              # @file.puts
-              # @indent += 2
-              # write_indent
-              # @file.puts("{")
               writer = TestCaseWriter.new(@file, @indent)
               yield writer
-              # @file.puts
-              # write_indent
-              # @file.write("}")
-              # @indent -= 2
               writer.close
             end
 
