@@ -76,18 +76,20 @@ module Test
             end
 
             def test_path
-              {
-                "type": "file",
-                "name": @source_location
-              },
-              {
-                "type": "class",
-                "name": @class_name
-              },
-              {
-                "type": "testcase",
-                "name": @method_name
-              }
+              [
+                {
+                  "type": "file",
+                  "name": @source_location
+                },
+                {
+                  "type": "class",
+                  "name": @class_name
+                },
+                {
+                  "type": "testcase",
+                  "name": @method_name
+                }
+              ]
             end
           end
 
