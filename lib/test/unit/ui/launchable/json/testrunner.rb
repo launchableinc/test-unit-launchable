@@ -28,15 +28,15 @@ module Test
               end
               @mediator.add_listener(::Test::Unit::TestCase::FINISHED_OBJECT) do |test|
                 @curt_test_case.elapsed_time = test.elapsed_time
-                @json_stream_writer.open_nested_object do |writer|
+                @json_stream_writer.write_test_case do |writer|
                   # The test path is a URL-encoded representation.
                   # https://github.com/launchableinc/cli/blob/v1.81.0/launchable/testpath.py#L18
-                  writer.write_key_value("testPath", @curt_test_case.test_path)
-                  writer.write_key_value("duration", @curt_test_case.elapsed_time)
-                  writer.write_key_value("status", @curt_test_case.status)
-                  writer.write_key_value("stderr", @curt_test_case.stderr)
-                  writer.write_key_value("stdout", nil)
-                  writer.write_key_value("createdAt", Time.now.to_s)
+                  writer.write_test_path_components("testPath", @curt_test_case.test_path)
+                  writer.write_duration(@curt_test_case.elapsed_time)
+                  writer.write_status(@curt_test_case.status)
+                  writer.write_stdout(nil)
+                  writer.write_stderr(@curt_test_case.stderr)
+                  writer.write_created_at(Time.now.to_s)
                 end
                 @curt_test_case = nil
               end
@@ -76,13 +76,18 @@ module Test
             end
 
             def test_path
-              {file: @source_location, class: @class_name, testcase: @method_name}.map{|key, val|
-                "#{encode_test_path_component(key)}=#{encode_test_path_component(val)}"
-              }.join('#')
-            end
-
-            def encode_test_path_component component
-              component.to_s.gsub('%', '%25').gsub('=', '%3D').gsub('#', '%23').gsub('&', '%26')
+              {
+                "type": "file",
+                "name": @source_location
+              },
+              {
+                "type": "class",
+                "name": @class_name
+              },
+              {
+                "type": "testcase",
+                "name": @method_name
+              }
             end
           end
 
