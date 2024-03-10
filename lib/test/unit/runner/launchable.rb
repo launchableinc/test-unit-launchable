@@ -3,7 +3,7 @@ require "test/unit/autorunner"
 module Test
   module Unit
     AutoRunner.register_runner(:launchable) do |auto_runner|
-      require_relative 'testrunner'
+      require_relative '../ui/launchable/json/testrunner'
       Test::Unit::UI::Launchable::JSON::TestRunner
     end
 
