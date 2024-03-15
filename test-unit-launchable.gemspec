@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "test-unit plugin that generates a Launchable test report file"
   spec.description = "test-unit-launchable is a convinient plugin for test-unit that generates a Launchable test report file based on the test results."
   spec.homepage = "https://github.com/ono-max/test-unit-launchable"
-  spec.license = "MIT"
+  spec.license = "Apache-2.0"
   spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
